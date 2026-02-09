@@ -122,8 +122,8 @@ public class ArrayAlgorithms {
             increment++; 
          }
       }
-      while((intArray.length-zero)>=0){
-         copy[intArray.length-1]=0;
+      while((intArray.length-zero)<intArray.length){
+         copy[intArray.length-zero]=0;
          zero--;
       }
       return copy;
@@ -136,7 +136,7 @@ public class ArrayAlgorithms {
       // 2) Populate the array with random numbers
       // 3) Call and print the result of EACH REQUIRED method
       // 4) If you are UWHS, also test the UWHS methods
-      ArrayAlgorithms array = new ArrayAlgorithms(10);
+      ArrayAlgorithms array = new ArrayAlgorithms(50);
       array.populateArrayWithRandom();
       System.out.println(array.hasDuplicates());
       array.print();
