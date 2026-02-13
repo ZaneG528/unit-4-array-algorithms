@@ -1,8 +1,7 @@
 public class ArrayAlgorithms {
 
    // DO NOT CHANGE THE VARIABLE NAME
-   private int[] intArray;
-
+   private int[]intArray;
    /*
    * ASSUMPTIONS FOR THIS ASSIGNMENT:
    * 1) arraySize will always be >= 1
@@ -13,7 +12,11 @@ public class ArrayAlgorithms {
       // REQUIRED: initialize intArray to be of size arraySize
       int[] tempArray = new int[arraySize];
       intArray=tempArray;
+   } 
+   public ArrayAlgorithms() {
+   
    }
+
 
    public void populateArrayWithRandom() {
       // REQUIRED: populate intArray with random integers from 0 - 99
@@ -32,10 +35,9 @@ public class ArrayAlgorithms {
       }
       
    }
-
    public int findMax() {
       // REQUIRED: return the largest integer in intArray
-      int maxNum = 0;
+      int maxNum = Integer.MIN_VALUE;
       for(int num : intArray){
          if (num>maxNum){
             maxNum=num;
@@ -79,28 +81,34 @@ public class ArrayAlgorithms {
       // UWHS ONLY:
       // Return the length of the longest strictly increasing contiguous segment
       int a = 0;
-      int increase = 0;
+      int increase = Integer.MIN_VALUE;
       int streak = 0;
+      int lastArray = 0;
+      boolean check = true;
       for (int array : intArray){
-         if(array>increase){
+         if((array>increase||a==0)&&array!=lastArray){
             increase = array;
-            a++;
+            if(!check){
+               a++;
+            }
+            check=false;
          }
          else{
             a=0;
-            increase = 0;
+            increase =0;
          }
          if(a>streak){
-            streak =a;
-            System.out.println(streak);
+            streak=a;
          }
+            System.out.println("a "+a);
+            System.out.println("array "+array);
+            System.out.println();
+            System.out.println();
+            lastArray = array;
       }
-      if(intArray[0]==0){
-         return streak+1;
-      }
-      else{
+     if(streak!=intArray.length)
+      streak++;
          return streak;
-      }
    }
 
    public int[] moveZeroesToEnd() {
@@ -136,15 +144,13 @@ public class ArrayAlgorithms {
       // 2) Populate the array with random numbers
       // 3) Call and print the result of EACH REQUIRED method
       // 4) If you are UWHS, also test the UWHS methods
-      ArrayAlgorithms array = new ArrayAlgorithms(50);
+      ArrayAlgorithms array = new ArrayAlgorithms(10);
       array.populateArrayWithRandom();
-      System.out.println(array.hasDuplicates());
       array.print();
       System.out.println();
       System.out.println();
+      System.out.println(array.longestContiguousSubarray());
       System.out.println();
-      array.moveZeroesToEnd();
-      array.print();
       
    }
 }
