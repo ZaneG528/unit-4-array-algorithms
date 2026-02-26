@@ -1,7 +1,7 @@
 public class ArrayAlgorithms {
 
    // DO NOT CHANGE THE VARIABLE NAME
-   private int[]intArray;
+   private int[]intArray = {5,3,2,6,2,3,4,5};
    /*
    * ASSUMPTIONS FOR THIS ASSIGNMENT:
    * 1) arraySize will always be >= 1
@@ -80,36 +80,26 @@ public class ArrayAlgorithms {
    public int longestContiguousSubarray() {
       // UWHS ONLY:
       // Return the length of the longest strictly increasing contiguous segment
-      int a = 0;
-      int increase = Integer.MIN_VALUE;
-      int streak = 0;
-      int lastArray = 0;
-      boolean check = true;
-      for (int array : intArray){
-         if((array>increase||a==0)&&array!=lastArray){
-            increase = array;
-            if(!check){
-               a++;
+      
+         int count = 1;
+         int streak = 1;
+         for (int i = 0;i<intArray.length;i++){
+            if (i!=0)
+               if(intArray[i]>intArray[i-1]){
+                  count++;
+               }
+            else{
+               count=1;
             }
-            check=false;
-         }
-         else{
-            a=0;
-            increase =0;
-         }
-         if(a>streak){
-            streak=a;
-         }
-            System.out.println("a "+a);
-            System.out.println("array "+array);
-            System.out.println();
-            System.out.println();
-            lastArray = array;
-      }
-     if(streak!=intArray.length)
-      streak++;
-         return streak;
-   }
+            if(count>streak){
+               streak = count;
+            }
+            //System.out.println("Count: "+count);
+           // System.out.println("Streak: "+streak);
+          }
+          
+       return streak;
+       }
 
    public int[] moveZeroesToEnd() {
       // UWHS ONLY:
@@ -144,8 +134,8 @@ public class ArrayAlgorithms {
       // 2) Populate the array with random numbers
       // 3) Call and print the result of EACH REQUIRED method
       // 4) If you are UWHS, also test the UWHS methods
-      ArrayAlgorithms array = new ArrayAlgorithms(10);
-      array.populateArrayWithRandom();
+      ArrayAlgorithms array = new ArrayAlgorithms();
+     // array.populateArrayWithRandom();
       array.print();
       System.out.println();
       System.out.println();
